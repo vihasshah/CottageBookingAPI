@@ -1,5 +1,5 @@
 <?php
-    include '../core/Helper.php';
+    include 'Helper.php';
 
     class Users {
 
