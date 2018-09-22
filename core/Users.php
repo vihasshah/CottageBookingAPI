@@ -2,6 +2,7 @@
     include '../core/Helper.php';
 
     class Users {
+
         var $conn = null;
         var $helper = null;
         function __construct(){
@@ -12,10 +13,6 @@
             if($this->conn == null){
                 $this->conn = $this->helper->db();
             }
-        }
-
-        function test(){
-            print_r($this->conn);
         }
 
         function exist($email){
@@ -95,8 +92,8 @@
         }
     }
 
-    $users = new Users();
-    $users->update_info(array("firstname"=>"ula","lastname"=>"testing","contact"=>"123","email"=>"email@email.com","user_id"=>4));
-    $users->update_password(array("password"=>"testPassword","email"=>"email@email.com","user_id"=>4));
-    $users->authenticate(array("password"=>"testPassword","email"=>"email@email.com"));
+    // $users = new Users();
+    // $users->update_info(array("firstname"=>"ula","lastname"=>"testing","contact"=>"123","email"=>"email@email.com","user_id"=>4));
+    // $users->update_password(array("password"=>"testPassword","email"=>"email@email.com","user_id"=>4));
+    // $users->authenticate(array("password"=>"testPassword","email"=>"email@email.com"));
 ?>
