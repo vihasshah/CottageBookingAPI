@@ -15,10 +15,6 @@
             }
         }
 
-        function test() {
-            print_r($this->conn);
-        }
-
         function get_list(){
             $query = "SELECT cot.*,cat.category FROM cottages cot INNER JOIN categories cat ON cot.category_id = cat.id";
             $res = mysqli_query($this->conn,$query);
