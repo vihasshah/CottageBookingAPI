@@ -25,6 +25,7 @@
             if(mysqli_num_rows($res) > 0){
                 $list = [];
                 while($result = mysqli_fetch_array($res,MYSQLI_ASSOC)){
+                    $result['reviews'] = $this->_get_reviews($result['id']);
                     $list[] = $result;
                 }
                 $this->helper->create_response(true,"List Found",$list);
@@ -59,11 +60,41 @@
             }
         }
 
+        // date format should be yyyy-mm-dd
+        function add_review($data){
+            $review = $data['review'];
+            $cottage_id = $data['cottage_id'];
+            $dateTime = new DateTime($data['date']); // use for fail safe 
+            $date = $dateTime->format('Y-m-d');
+            $query = "INSERT INTO reviews VALUES(null,'$review','$cottage_id','$date')";
+            $res = mysqli_query($this->conn,$query);
+            if($res > 0){
+                $this->helper->create_response(true,"Review added",null);
+            }else{
+                $this->helper->create_response(true,"Sorry! try again later",null);
+            }
+        }
         
+        private function _get_reviews($cottage_id){
+            $reviewQuery = "SELECT review, date from reviews where cottage_id='$cottage_id'";
+            $res = mysqli_query($this->conn,$reviewQuery);
+            if(mysqli_num_rows($res) > 0) {
+                $list = [];
+                while ($result = mysqli_fetch_array($res,MYSQLI_ASSOC)){
+                    $dateTime = new DateTime($result['date']); // change date format
+                    $result['date'] = $dateTime->format('d-M-Y');
+                    $list[] = $result;
+                }
+                return $list;
+            }else{
+                return [];
+            }
+        }
     }
 
     $cottage = new Cottage();
-    // $cottage->get_list();
-    $cottage->search_by("%ahmedabad%",'place');
+    $cottage->get_list();
+    // $cottage->search_by("%ahmedabad%",'place');
     // $cottage->search_by("1",'category');
+    // $cottage->add_review(array("review"=>"this is review for old rethel greens","cottage_id"=>1,"date"=>"01-05-2016"));
 ?>
