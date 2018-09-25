@@ -60,9 +60,10 @@
         function add_review($data){
             $review = $data['review'];
             $cottage_id = $data['cottage_id'];
+            $ratings = $data['ratings'];
             $dateTime = new DateTime($data['date']); // use for fail safe 
             $date = $dateTime->format('Y-m-d');
-            $query = "INSERT INTO reviews VALUES(null,'$review','$cottage_id','$date')";
+            $query = "INSERT INTO reviews VALUES(null,'$review','$ratings','$cottage_id','$date')";
             $res = mysqli_query($this->conn,$query);
             if($res > 0){
                 $this->helper->create_response(true,"Review added",null);
@@ -72,7 +73,7 @@
         }
         
         private function _get_reviews($cottage_id){
-            $reviewQuery = "SELECT review, date from reviews where cottage_id='$cottage_id'";
+            $reviewQuery = "SELECT review,ratings,`date` from reviews where cottage_id='$cottage_id'";
             $res = mysqli_query($this->conn,$reviewQuery);
             if(mysqli_num_rows($res) > 0) {
                 $list = [];
