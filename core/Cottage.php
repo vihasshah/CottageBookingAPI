@@ -38,16 +38,17 @@
          *      place -> search by place
          */
         function search_by($searchInput,$field){
-            $query = "SELECT * FROM cottages"; // all data (filter not applied) 
+            $query = "SELECT cot.*,cat.category FROM cottages cot INNER JOIN categories cat ON cot.category_id = cat.id"; // all data (filter not applied) 
             if($field == 'category'){
-                $query = "SELECT * FROM cottages where category_id='$searchInput'"; // search by category
+                $query = "SELECT cot.*,cat.category FROM cottages cot INNER JOIN categories cat ON cot.category_id = cat.id WHERE cot.id='$searchInput'"; // search by category
             }else if($field == 'place'){
-                $query = "SELECT * FROM cottages where place LIKE '$searchInput'"; // search by place (lasy search)
+                $query = "SELECT cot.*,cat.category FROM cottages cot INNER JOIN categories cat ON cot.category_id = cat.id WHERE cot.place LIKE '$searchInput'"; // search by place (lasy search)
             }
             $res = mysqli_query($this->conn,$query);
             if(mysqli_num_rows($res) > 0){
                 $list = [];
                 while($result = mysqli_fetch_array($res,MYSQLI_ASSOC)){
+                    $result['reviews'] = $this->_get_reviews($result['id']);
                     $list[] = $result;
                 }
                 $this->helper->create_response(true,"Found",$list);
