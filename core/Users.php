@@ -36,12 +36,22 @@
                 $query = "insert into users values(null,'$firstname','$lastname','$contact','$email','$password')";
                 $res = mysqli_query($this->conn,$query);
                 if($res > 0){
-                    $this->helper->create_response(true,"User added",array("user_id"=>mysqli_insert_id($this->conn)));
+                    $this->helper->create_response(true,"User added",$this->get_user_by_id(mysqli_insert_id($this->conn)));
                 }else{
                     $this->helper->create_response(false,"User not added",null);
                 }
             }else{
                 $this->helper->create_response(false,"User already registered",null);
+            }
+        }
+
+        private function get_user_by_id($id){
+            $query = "select * from users where id='$id' limit 1";
+            $res = mysqli_query($this->conn,$query);
+            if($res > 0){
+                return mysqli_fetch_array($res,MYSQLI_ASSOC);
+            }else{
+                return [];
             }
         }
 
