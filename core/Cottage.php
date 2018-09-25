@@ -88,8 +88,8 @@
         }
     }
 
-    $cottage = new Cottage();
-    $cottage->get_list();
+    // $cottage = new Cottage();
+    // $cottage->get_list();
     // $cottage->search_by("%ahmedabad%",'place');
     // $cottage->search_by("1",'category');
     // $cottage->add_review(array("review"=>"this is review for old rethel greens","cottage_id"=>1,"date"=>"01-05-2016"));
