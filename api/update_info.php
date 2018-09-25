@@ -10,7 +10,6 @@
         $lastname = $json['lastname'];
         $contact = $json['contact'];
         $email = $json['email'];
-        $password = $json['password'];
         $users->update_info(array(
             'firstname'=>$firstname,
             'lastname'=>$lastname,
