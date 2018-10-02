@@ -44,7 +44,7 @@
             }else if($field == 'place' && $searchInput1 == null && $field1 == null){
                 $query = "SELECT cot.*,cat.category FROM cottages cot INNER JOIN categories cat ON cot.category_id = cat.id WHERE cot.place LIKE '$searchInput'"; // search by place (lasy search)
             }else if($field == 'category' && $field1 == 'place'){
-                $query = "SELECT cot.*,cat.category FROM cottages cot INNER JOIN categories cat ON cot.category_id = cat.id WHERE cot.category_id = '$searchInput' AND cot.place LIKE '$searchInput1'"; // search by place (lasy search)
+                $query = "SELECT cot.*,cat.category FROM cottages cot INNER JOIN categories cat ON (cot.category_id = cat.id AND cot.category_id = '$searchInput' AND cot.place LIKE '$searchInput1')"; // search by place (lasy search)
             }
             $res = mysqli_query($this->conn,$query);
             if(mysqli_num_rows($res) > 0){
@@ -82,7 +82,7 @@
                 $list = [];
                 while ($result = mysqli_fetch_array($res,MYSQLI_ASSOC)){
                     $dateTime = new DateTime($result['date']); // change date format
-                    $result['date'] = $dateTime->format('d-M-Y');
+                    $result['date'] = $dateTime->format('d M, Y');
                     $list[] = $result;
                 }
                 return $list;
