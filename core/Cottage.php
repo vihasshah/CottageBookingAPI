@@ -37,12 +37,14 @@
          *      category -> search by category
          *      place -> search by place
          */
-        function search_by($searchInput,$field){
+        function search_by($searchInput,$field,$searchInput1,$field1){
             $query = "SELECT cot.*,cat.category FROM cottages cot INNER JOIN categories cat ON cot.category_id = cat.id"; // all data (filter not applied) 
-            if($field == 'category'){
-                $query = "SELECT cot.*,cat.category FROM cottages cot INNER JOIN categories cat ON cot.category_id = cat.id WHERE cot.id='$searchInput'"; // search by category
-            }else if($field == 'place'){
+            if($field == 'category' && $searchInput1 == null && $field1 == null){
+                $query = "SELECT cot.*,cat.category FROM cottages cot INNER JOIN categories cat ON cot.category_id = cat.id WHERE cot.category_id='$searchInput'"; // search by category
+            }else if($field == 'place' && $searchInput1 == null && $field1 == null){
                 $query = "SELECT cot.*,cat.category FROM cottages cot INNER JOIN categories cat ON cot.category_id = cat.id WHERE cot.place LIKE '$searchInput'"; // search by place (lasy search)
+            }else if($field == 'category' && $field1 == 'place'){
+                $query = "SELECT cot.*,cat.category FROM cottages cot INNER JOIN categories cat ON cot.category_id = cat.id WHERE cot.category_id = '$searchInput' AND cot.place LIKE '$searchInput1'"; // search by place (lasy search)
             }
             $res = mysqli_query($this->conn,$query);
             if(mysqli_num_rows($res) > 0){
