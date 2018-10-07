@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 25, 2018 at 09:34 AM
+-- Generation Time: Oct 07, 2018 at 08:31 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -66,8 +66,8 @@ CREATE TABLE `cottages` (
 --
 
 INSERT INTO `cottages` (`id`, `name`, `place`, `images`, `available`, `price`, `amenities`, `contact`, `ratings`, `category_id`) VALUES
-(1, 'Rethal Greens', 'AHMEdabad', 'https://im.proptiger.com/1/502090/80/safal-builder-rethal-greens-swimming-pool-760667.jpeg?width=800&height=620, https://media.gobymobile.com/mediaresources/venue/2012/gallery/large/753fb8a1-bfd5-44e5-87ca-673847145e32.jpg', 1, 3500, 'Pool, Wifi, Outdoor Games, Indoor Games', 1233465567, 5, 2),
-(2, 'Harmonic Holidays', 'Baroda', 'https://im.proptiger.com/1/502090/80/safal-builder-rethal-greens-swimming-pool-760667.jpeg?width=800&height=620, https://media.gobymobile.com/mediaresources/venue/2012/gallery/large/753fb8a1-bfd5-44e5-87ca-673847145e32.jpg', 1, 3000, 'Pool, Wifi', 987654321, 5, 1);
+(1, 'Rethal Greens', 'Ahmedabad', '/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg,/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg,/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg,/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg', 1, 3500, 'Pool, Wifi, Outdoor Games, Indoor Games', 1233465567, 5, 2),
+(2, 'Harmonic Holidays', 'Baroda', '/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg', 1, 3000, 'Pool, Wifi', 987654321, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -87,7 +87,7 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id`, `image`, `title`, `details`) VALUES
-(1, 'https://im.proptiger.com/1/502090/80/safal-builder-rethal-greens-swimming-pool-760667.jpeg?width=800&height=620', 'news title', 'this is description part of property new.this is multiline para.');
+(1, '/cottage/assets/img1.jpeg', 'news title', 'this is description part of property new.this is multiline para.');
 
 -- --------------------------------------------------------
 
@@ -125,7 +125,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `firstname` text,
   `lastname` text,
-  `contact` int(20) DEFAULT NULL,
+  `contact` varchar(20) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -135,7 +135,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `contact`, `email`, `password`) VALUES
-(1, 'vihas', 'shah', 123456789, 'vihas@vihas.com', '5da1d400bcf731b1243e7581994ec0a0');
+(1, 'vihas', 'shah', '123456789', 'vihas@vihas.com', '5da1d400bcf731b1243e7581994ec0a0'),
+(2, 'testing', 'testing', '123456789', 'testing@testing.com', 'ae2b1fca515949e5d54fb22b8ed95575'),
+(3, 'test', 'test', '1234567890', 'test@test.com', '098f6bcd4621d373cade4e832627b4f6');
 
 --
 -- Indexes for dumped tables
@@ -203,7 +205,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
