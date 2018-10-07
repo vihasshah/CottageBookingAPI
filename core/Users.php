@@ -67,9 +67,10 @@
             $query = "update users set firstname='$firstname', lastname='$lastname', contact='$contact', email='$email' where id='$user_id'";
             $res = mysqli_query($this->conn,$query);
             if(mysqli_affected_rows($this->conn) > 0){
-                $this->helper->create_response(true,"User Info updated",null);
+                
+                $this->helper->create_response(true,"User Info updated",$this->get_user_by_id($user_id));
             }else{
-                $this->helper->create_response(false,"User Info not updated",null);
+                $this->helper->create_response(false,"User Info not updated",[]);
             }
         }
 
