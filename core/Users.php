@@ -48,7 +48,7 @@
         private function get_user_by_id($id){
             $query = "select * from users where id='$id' limit 1";
             $res = mysqli_query($this->conn,$query);
-            if($res > 0){
+            if(mysqli_num_rows($res) > 0){
                 $user_info = mysqli_fetch_array($res,MYSQLI_ASSOC);
                 unset($user_info['password']); // remove password key from array
                 return $user_info;
