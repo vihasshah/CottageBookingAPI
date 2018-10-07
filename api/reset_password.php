@@ -12,7 +12,7 @@
         $users->update_password(array(
             'email'=>$email,
             "user_id"=>$user_id,
-            "old_password"=>$old_password;
+            "old_password"=>$old_password,
             "password"=>$password
         ));
     }
