@@ -76,15 +76,16 @@
 
         function update_password($data){
             $email = $data['email'];
+            $old_password = md5($data['old_password']);
             $newPassword = md5($data['password']);
             $user_id = $data['user_id'];
 
-            $query = "update users set password='$newPassword' where email='$email' and id='$user_id'";
+            $query = "update users set password='$newPassword' where email='$email' and password='$old_password' and id='$user_id'";
             $res = mysqli_query($this->conn,$query);
             if(mysqli_affected_rows($this->conn) > 0){
                 $this->helper->create_response(true,"Password updated",null);
             }else{
-                $this->helper->create_response(false,"Same password as previous one",null);
+                $this->helper->create_response(false,"Given wrong credentials",null);
             }
         }
 
