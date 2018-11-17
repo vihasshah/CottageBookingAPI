@@ -14,14 +14,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     
     <!-- navbar -->
-    <nav>
-        <div class="nav-wrapper default-primary-color">
-            <a href="#!" class="brand-logo ">Cottage Finder</a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="index.php"><i class="material-icons left">store</i>Cottages</a></li>
-                <li><a href="users.php"><i class="material-icons left">person</i>Users</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper default-primary-color">
+                <a href="#!" class="brand-logo ">Cottage Finder</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="index.php"><i class="material-icons left">store</i>Cottages</a></li>
+                    <li><a href="users.php"><i class="material-icons left">person</i>Users</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 </body>
 </html>
