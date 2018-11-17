@@ -4,7 +4,7 @@
 .default-primary-color { background: #009688; }
 .light-primary-color   { background: #B2DFDB; }
 .text-primary-color    { color: #FFFFFF; }
-.accent-color          { background: #FFC107 !important; }
+.accent-color          { background: #FF5722 !important; }
 .primary-text-color    { color: #212121 !important; }
 .secondary-text-color  { color: #757575; }
 .divider-color         { border-color: #BDBDBD; }
