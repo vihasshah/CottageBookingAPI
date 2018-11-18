@@ -72,7 +72,9 @@ const cottageListUI = (result) => {
                         </div>
                         <div class="col s12 m2">
                             <p class="right-align">
-                                <a href="" class="waves-effect waves-light btn-small red    ">Block</a>
+                                ${item.blocked == "0" ?
+                                    `<a href="" class="waves-effect waves-light btn-small green darken-2">Unblock</a>` :
+                                    `<a href="" class="waves-effect waves-light btn-small red darken-2">Block</a>` }
                             </p>
                         </div>
                     </div>
@@ -124,7 +126,9 @@ const userListUI = (result) => {
                         </div>
                         <div class="col s12 m2">
                             <p class="right-align">
-                                <a href="" class="waves-effect waves-light btn-small red    ">Block</a>
+                                ${item.blocked == "0" ?
+                                    `<a href="" class="waves-effect waves-light btn-small green darken-2">Unblock</a>` :
+                                    `<a href="" class="waves-effect waves-light btn-small red darken-2">Block</a>` }
                             </p>
                         </div>
                     </div>
