@@ -55,7 +55,6 @@ const renderCottageList = () => {
 // create cottage list UI 
 const cottageListUI = (result) => {
     let { success, message, data } = JSON.parse(result)
-    console.log(data);
     if(success == 1){
         return data.map((item,index) => {
             return `
@@ -70,6 +69,58 @@ const cottageListUI = (result) => {
                             <h6 class="bold ${item.available == "1" ? "success-text-color" : "failure-text-color"}">${item.available == "1" ? "Available" : "Not Available"}</h6>
                             <div class="secondary-text-color valign-wrapper center-align"><i class="material-icons tiny small-right-margin">star</i>${item.category}</div>
                             <div class="secondary-text-color valign-wrapper center-align"><i class="material-icons tiny small-right-margin">account_balance_wallet</i>${item.price} <i class="tiny-font">/ day</i></div>
+                        </div>
+                        <div class="col s12 m2">
+                            <p class="right-align">
+                                <a href="" class="waves-effect waves-light btn-small red    ">Block</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+        
+    }else{
+        return `
+            <div class="row center-align">
+                <h6 class="secondary-text-color">${message}</h6>
+            </div>
+        `
+    }
+
+}
+
+/*
+=========================
+    USERS
+=========================
+ */
+
+// call user get api and render user list
+const renderUserList = () => {
+    $.ajax({
+        type : "GET",
+        dataType: "json",
+        url: "../api/user_list.php", 
+        async :false, //chrome has problem with async response so it must be false
+        success: (result) => {
+            $('#userList').html(userListUI(JSON.stringify(result)))
+        }
+    });
+}
+
+// create cottage list UI 
+const userListUI = (result) => {
+    let { success, message, data } = JSON.parse(result)
+    if(success == 1){
+        return data.map((item,index) => {
+            return `
+                <div class="col s12 ${index % 2 == 0 ? "extra-light-primary-color" :""}">
+                    <div class="row">
+                        <div class="col s12 m10">
+                            <h6 class="bold">${item.firstname} ${item.lastname}</h6>
+                            <div class="secondary-text-color valign-wrapper center-align"><i class="material-icons tiny small-right-margin">mail</i>${item.email}</div>
+                            <div class="secondary-text-color valign-wrapper center-align"><i class="material-icons tiny small-right-margin">call</i>${item.contact}</div>
                         </div>
                         <div class="col s12 m2">
                             <p class="right-align">
