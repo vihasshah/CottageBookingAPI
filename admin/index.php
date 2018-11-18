@@ -107,31 +107,31 @@
             <form action="index.php" method="post" enctype="multipart/form-data" id="addForm">
                 <div class="row">
                     <div class="input-field col s12 m4">
-                        <input placeholder="e.g., Coconut Cottage" id="cottage_name" type="text" class="validate" value="test" name="cottage_name">
+                        <input placeholder="e.g., Coconut Cottage" id="cottage_name" type="text" class="validate" name="cottage_name">
                         <label for="first_name">Cottage Name</label>
                     </div>
                     <div class="input-field col s12 m4">
-                        <input placeholder="e.g., Trivandrum" id="place" type="text" class="validate" value="test" name="place">
+                        <input placeholder="e.g., Trivandrum" id="place" type="text" class="validate" name="place">
                         <label for="place">Place</label>
                     </div>
                     <div class="input-field col s12 m4">
-                        <input placeholder="e.g., 9823421231" id="contact_no" type="number" class="validate" value="1231232" name="contact_no">
+                        <input placeholder="e.g., 9823421231" id="contact_no" type="number" class="validate" name="contact_no">
                         <label for="contact_no">Contact No</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m4">
-                        <input placeholder="e.g., Pool, Wifi, club" id="amenities" type="text" class="validate" value="test" name="amenities">
-                        <label for="first_name">Amenities</label>
+                        <input placeholder="e.g., Pool, Wifi, club" id="amenities" type="text" class="validate" name="amenities">
+                        <label for="amenities">Amenities</label>
                     </div>
                     <div class="input-field col s12 m4">
-                        <input placeholder="e.g., 3500" id="price" type="text" class="validate" value="test" name="price">
+                        <input placeholder="e.g., 3500" id="price" type="text" class="validate" name="price">
                         <label for="price">Price</label>
                     </div>
                     <div class="input-field col s12 m4">
                         <select id="category" name="category">
-                            <option value="" disabled >Choose your option</option>
-                            <option value="1" selected>3 star</option>
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="1">3 star</option>
                             <option value="2">5 star</option>
                             <option value="3">7 star</option>
                         </select>
