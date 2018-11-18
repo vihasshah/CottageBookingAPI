@@ -11,5 +11,7 @@
 
 .success-text-color { color: #388E3C }
 .failure-text-color { color: #D32F2F}
+.success-color { background: #388E3C }
+.failure-color { background: #D32F2F}
 
 .extra-light-primary-color   { background: #f5f5f5; }
