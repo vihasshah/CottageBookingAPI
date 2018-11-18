@@ -45,6 +45,21 @@
             }
         }
 
+        function get_list(){
+            $query = "select * from users";
+            $res = mysqli_query($this->conn,$query);
+            if(mysqli_num_rows($res) > 0){
+                $list = [];
+                while($result = mysqli_fetch_array($res,MYSQLI_ASSOC)){
+                    unset($result['password']); // remove password key from array
+                    $list[] = $result;
+                }
+                $this->helper->create_response(true,"Users Found",$list);
+            }else{
+                $this->helper->create_response(false,"Users Not Found",null);
+            }
+        }
+
         private function get_user_by_id($id){
             $query = "select * from users where id='$id' limit 1";
             $res = mysqli_query($this->conn,$query);
