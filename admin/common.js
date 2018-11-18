@@ -8,32 +8,9 @@ $(document).ready(() => {
 
     // save cottage form
     $('#save').click(() => {
-        // var cottage_name = $("#cottage_name").val()
-        // var place = $("#place").val()
-        // var contact_no = $("#contact_no").val()
-        // var price = $("#price").val()
-        // var category = $("#category").val()
-        // var available = $("#available").prop('checked')
-        // var fileNames = $("#file").val()
-        // var filenames2 = $("#mutlifile").val()
-
-        // var obj = {
-        //     name:cottage_name,
-        //     place:place,
-        //     contact:contact_no,
-        //     price:price,
-        //     category:category,
-        //     available:available,
-        //     fileNames:fileNames,
-        //     filenames2:filenames2
-        // }
-
-        // console.log(obj)
         $('#addForm').submit();
     })
-
-    // toggle block button
-    
+        
 });
 
 
