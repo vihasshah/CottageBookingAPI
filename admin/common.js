@@ -30,6 +30,9 @@ $(document).ready(() => {
 
         console.log(obj)
     })
+
+    // toggle block button
+    $()
 });
 
 
@@ -72,7 +75,7 @@ const cottageListUI = (result) => {
                         </div>
                         <div class="col s12 m2">
                             <p class="right-align">
-                                <a id="blockBtn" class="waves-effect waves-light btn-small ${item.blocked == "1" ? "green darken-2" : "red darken-2"}">
+                                <a id="blockBtnCottage" class="waves-effect waves-light btn-small ${item.blocked == "1" ? "green darken-2" : "red darken-2"}" onclick="toggleCottageBlock(${item.id},${item.blocked})">
                                     ${item.blocked == "1" ? "Unblock" : "Block"}
                                 </a>
                             </p>
@@ -90,6 +93,27 @@ const cottageListUI = (result) => {
         `
     }
 
+}
+
+// block unblock cottage
+const toggleCottageBlock = (id,newStatus) => {
+    let postData = {
+        cottage_id:id,
+        block_status:newStatus == 1 ? 0 : 1
+    }
+
+    $.ajax({
+        type : "POST",
+        dataType: "json",
+        url: "../api/block_cottage.php", 
+        data:JSON.stringify(postData),
+        async :false, //chrome has problem with async response so it must be false
+        contentType: "application/json; charset=utf-8",
+        success: (result) => {
+            M.toast({html: result.message, classes: 'rounded',displayLength:1000})
+            renderCottageList()
+        }
+    });
 }
 
 /*
@@ -126,7 +150,7 @@ const userListUI = (result) => {
                         </div>
                         <div class="col s12 m2">
                             <p class="right-align">
-                                <a id="blockBtn" class="waves-effect waves-light btn-small ${item.blocked == "1" ? "green darken-2" : "red darken-2"}">
+                                <a id="blockBtnUser" class="waves-effect waves-light btn-small ${item.blocked == "1" ? "green darken-2" : "red darken-2"}">
                                     ${item.blocked == "1" ? "Unblock" : "Block"}
                                 </a>
                             </p>
@@ -145,3 +169,4 @@ const userListUI = (result) => {
     }
 
 }
+
