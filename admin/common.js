@@ -101,7 +101,6 @@ const toggleCottageBlock = (id,newStatus) => {
         cottage_id:id,
         block_status:newStatus == 1 ? 0 : 1
     }
-
     $.ajax({
         type : "POST",
         dataType: "json",
@@ -150,7 +149,7 @@ const userListUI = (result) => {
                         </div>
                         <div class="col s12 m2">
                             <p class="right-align">
-                                <a id="blockBtnUser" class="waves-effect waves-light btn-small ${item.blocked == "1" ? "green darken-2" : "red darken-2"}">
+                                <a id="blockBtnUser" class="waves-effect waves-light btn-small ${item.blocked == "1" ? "green darken-2" : "red darken-2"}" onclick="toggleUserBlock(${item.id},${item.blocked})">
                                     ${item.blocked == "1" ? "Unblock" : "Block"}
                                 </a>
                             </p>
@@ -169,4 +168,25 @@ const userListUI = (result) => {
     }
 
 }
+
+// block unblock user
+const toggleUserBlock = (id,newStatus) => {
+    let postData = {
+        user_id:id,
+        block_status:newStatus == 1 ? 0 : 1
+    }
+    $.ajax({
+        type : "POST",
+        dataType: "json",
+        url: "../api/block_user.php", 
+        data:JSON.stringify(postData),
+        async :false, //chrome has problem with async response so it must be false
+        contentType: "application/json; charset=utf-8",
+        success: (result) => {
+            M.toast({html: result.message, classes: 'rounded',displayLength:1000})
+            renderUserList()
+        }
+    });
+}
+
 
