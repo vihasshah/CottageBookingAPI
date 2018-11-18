@@ -14,6 +14,39 @@
                 $this->conn = $this->helper->db();
             }
         }
+        private function _exists($data){
+            $cottage_name = $data['cottage_name'];
+            $place = $data['place'];
+            $contact_no = $data['contact_no'];
+            $query = "SELECT * FROM cottages WHERE name='$cottage_name' AND place='$place' AND contact='$contact_no'";
+            $res = mysqli_query($this->conn,$query);
+            if(mysqli_num_rows($res) > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        function add($data) {
+            $cottage_name = $data['cottage_name'];
+            $place = $data['place'];
+            $contact_no = $data['contact_no'];
+            $category = $data['category'];
+            $amenities = $data['amenities'];
+            $available = $data['available'];
+            $price = $data['price'];
+            $images = $data['images'];
+            if(!$this->_exists($data)){
+                $query = "INSERT INTO cottages VALUES(null,'$cottage_name','$place','$images','$available','$price','$amenities','$contact_no',5,0,'$category')";
+                $res = mysqli_query($this->conn,$query);
+                if($res > 0){
+                    $this->helper->create_response(true,"Cottage added",[]);
+                }else{
+                    $this->helper->create_response(true,"Cottage not added",[]);
+                }
+            }else{
+                $this->helper->create_response(true,"Cottage Exists",[]);
+            }
+        }
 
         function get_list(){
             $query = "SELECT cot.*,cat.category FROM cottages cot INNER JOIN categories cat ON cot.category_id = cat.id";
