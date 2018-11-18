@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 07, 2018 at 08:31 PM
+-- Generation Time: Nov 18, 2018 at 10:59 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -58,6 +58,7 @@ CREATE TABLE `cottages` (
   `amenities` text NOT NULL,
   `contact` int(20) NOT NULL,
   `ratings` int(11) NOT NULL,
+  `blocked` tinyint(1) NOT NULL DEFAULT '0',
   `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -65,9 +66,10 @@ CREATE TABLE `cottages` (
 -- Dumping data for table `cottages`
 --
 
-INSERT INTO `cottages` (`id`, `name`, `place`, `images`, `available`, `price`, `amenities`, `contact`, `ratings`, `category_id`) VALUES
-(1, 'Rethal Greens', 'Ahmedabad', '/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg,/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg,/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg,/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg', 1, 3500, 'Pool, Wifi, Outdoor Games, Indoor Games', 1233465567, 5, 2),
-(2, 'Harmonic Holidays', 'Baroda', '/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg', 1, 3000, 'Pool, Wifi', 987654321, 5, 1);
+INSERT INTO `cottages` (`id`, `name`, `place`, `images`, `available`, `price`, `amenities`, `contact`, `ratings`, `blocked`, `category_id`) VALUES
+(1, 'Rethal Greens', 'Ahmedabad', '/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg,/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg,/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg,/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg', 1, 3500, 'Pool, Wifi, Outdoor Games, Indoor Games', 1233465567, 5, 0, 2),
+(2, 'Harmonic Holidays', 'Baroda', '/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg', 1, 3000, 'Pool, Wifi', 987654321, 5, 0, 1),
+(12, 'test', 'test', '/cottage/assets/6823b72e90bc8813c659c5023d13d002.jpg', 1, 123, 'test', 1231232, 5, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -127,17 +129,18 @@ CREATE TABLE `users` (
   `lastname` text,
   `contact` varchar(20) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `blocked` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `firstname`, `lastname`, `contact`, `email`, `password`) VALUES
-(1, 'vihas', 'shah', '123456789', 'vihas@vihas.com', '5da1d400bcf731b1243e7581994ec0a0'),
-(2, 'testing', 'testing', '123456789', 'testing@testing.com', 'ae2b1fca515949e5d54fb22b8ed95575'),
-(3, 'test', 'test', '1234567890', 'test@test.com', '098f6bcd4621d373cade4e832627b4f6');
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `contact`, `email`, `password`, `blocked`) VALUES
+(1, 'vihas', 'shah', '123456789', 'vihas@vihas.com', '5da1d400bcf731b1243e7581994ec0a0', 0),
+(2, 'testing', 'testing', '123456789', 'testing@testing.com', 'ae2b1fca515949e5d54fb22b8ed95575', 0),
+(3, 'test', 'test', '1234567890', 'test@test.com', '098f6bcd4621d373cade4e832627b4f6', 0);
 
 --
 -- Indexes for dumped tables
@@ -187,7 +190,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `cottages`
 --
 ALTER TABLE `cottages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `news`
