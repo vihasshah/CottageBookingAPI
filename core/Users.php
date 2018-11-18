@@ -119,6 +119,24 @@
                 $this->helper->create_response(false,"Invalid User",null);
             }
         }
+
+        function block_user($data){
+            $user_id = $data['user_id'];
+            $block_status = $data['block_status'];
+            $message = "";
+            if($block_status == "0"){
+                $message = "Unblocked";
+            }else{
+                $message = "Blocked";
+            }
+            $updateQuery = "UPDATE users SET blocked='$block_status' WHERE id='$user_id'";
+            $res = mysqli_query($this->conn,$updateQuery);
+            if(mysqli_affected_rows($this->conn) > 0){
+                $this->helper->create_response(true,$message,[]);
+            }else{
+                $this->helper->create_response(false,"Status not updated",[]);
+            }
+        }
     }
 
     // $users = new Users();
