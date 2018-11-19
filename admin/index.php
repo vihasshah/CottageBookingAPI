@@ -68,7 +68,7 @@
     <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper default-primary-color">
-                <a href="#!" class="brand-logo ">Cottage Finder</a>
+                <a href="#!" class="brand-logo ">Cottage Booking</a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="index.php"><i class="material-icons left">store</i>Cottages</a></li>
                     <li><a href="users.html"><i class="material-icons left">person</i>Users</a></li>
