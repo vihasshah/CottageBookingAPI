@@ -29,7 +29,7 @@
         $finalArr['contact_no'] = $contact_no;
         $finalArr['category'] = $category;
         $finalArr['amenities'] = $amenities;
-        $finalArr['available'] = $available;
+        $finalArr['available'] = "1";
         $finalArr['price'] = $price;
         $finalArr['images'] = $images;
 
@@ -152,14 +152,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <!--<div class="row">
                     <div class="col s12">
                         <label>
                             <input type="checkbox" id="available" name="available" value="1"/>
                             <span>Available</span>
                         </label>
                     <div>
-                </div>
+                </div>-->
             </form>
         </div>
     </div>
