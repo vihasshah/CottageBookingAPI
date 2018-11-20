@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 18, 2018 at 10:59 AM
+-- Generation Time: Nov 20, 2018 at 10:53 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -21,6 +21,20 @@ SET time_zone = "+00:00";
 --
 -- Database: `CottageBooking`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking`
+--
+
+CREATE TABLE `booking` (
+  `id` int(11) NOT NULL,
+  `cottage_id` int(11) DEFAULT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `available` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -59,17 +73,18 @@ CREATE TABLE `cottages` (
   `contact` int(20) NOT NULL,
   `ratings` int(11) NOT NULL,
   `blocked` tinyint(1) NOT NULL DEFAULT '0',
-  `category_id` int(11) NOT NULL
+  `category_id` int(11) NOT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cottages`
 --
 
-INSERT INTO `cottages` (`id`, `name`, `place`, `images`, `available`, `price`, `amenities`, `contact`, `ratings`, `blocked`, `category_id`) VALUES
-(1, 'Rethal Greens', 'Ahmedabad', '/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg,/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg,/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg,/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg', 1, 3500, 'Pool, Wifi, Outdoor Games, Indoor Games', 1233465567, 5, 0, 2),
-(2, 'Harmonic Holidays', 'Baroda', '/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg', 1, 3000, 'Pool, Wifi', 987654321, 5, 0, 1),
-(12, 'test', 'test', '/cottage/assets/6823b72e90bc8813c659c5023d13d002.jpg', 1, 123, 'test', 1231232, 5, 0, 1);
+INSERT INTO `cottages` (`id`, `name`, `place`, `images`, `available`, `price`, `amenities`, `contact`, `ratings`, `blocked`, `category_id`, `start_date`, `end_date`) VALUES
+(1, 'Rethal Greens', 'Ahmedabad', '/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg,/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg,/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg,/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg', 1, 3500, 'Pool, Wifi, Outdoor Games, Indoor Games', 1233465567, 5, 0, 2, '2018-01-01', '2018-01-05'),
+(2, 'Harmonic Holidays', 'Baroda', '/cottage/assets/img1.jpeg,/cottage/assets/rethal2.jpg', 1, 3000, 'Pool, Wifi', 987654321, 5, 0, 1, '2018-11-20', '2018-11-20');
 
 -- --------------------------------------------------------
 
@@ -147,6 +162,12 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `contact`, `email`, `passwor
 --
 
 --
+-- Indexes for table `booking`
+--
+ALTER TABLE `booking`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
@@ -181,6 +202,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `booking`
+--
+ALTER TABLE `booking`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
@@ -190,7 +217,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `cottages`
 --
 ALTER TABLE `cottages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `news`
