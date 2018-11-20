@@ -36,9 +36,11 @@
         // print_r($finalArr);
         $cottage = new Cottage();
         $response = $cottage->add($finalArr);
-        $resArr = json_decode($response);
-        if($resArr['success'] == 1){
-            header("Refresh:0");
+        // $resArr = json_decode(file_get_contents('php://input'),TRUE);
+        if($response['success'] == 1){
+            
+            echo "<center>".$response['message']."<center>";
+            header('Refresh: 0;');
         }
 
     }
@@ -71,7 +73,7 @@
                 <a href="#!" class="brand-logo ">Cottage Booking</a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="index.php"><i class="material-icons left">store</i>Cottages</a></li>
-                    <li><a href="users.html"><i class="material-icons left">person</i>Users</a></li>
+                    <!--<li><a href="users.html"><i class="material-icons left">person</i>Users</a></li>-->
                 </ul>
             </div>
         </nav>

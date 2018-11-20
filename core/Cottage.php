@@ -39,12 +39,12 @@
                 $query = "INSERT INTO cottages VALUES(null,'$cottage_name','$place','$images','$available','$price','$amenities','$contact_no',5,0,'$category')";
                 $res = mysqli_query($this->conn,$query);
                 if($res > 0){
-                    $this->helper->create_response(true,"Cottage added",[]);
+                    return array("success" => true,"message"=> "Cottage added");
                 }else{
-                    $this->helper->create_response(true,"Cottage not added",[]);
+                    return array("success" => true,"message"=> "Cottage not added");
                 }
             }else{
-                $this->helper->create_response(true,"Cottage Exists",[]);
+                return array("success" => true,"message"=> "Cottage Exists");
             }
         }
 
