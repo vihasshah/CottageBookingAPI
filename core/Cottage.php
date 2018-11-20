@@ -26,6 +26,7 @@
                 return false;
             }
         }
+
         function add($data) {
             $cottage_name = $data['cottage_name'];
             $place = $data['place'];
@@ -140,6 +141,36 @@
                 $this->helper->create_response(true,$message,[]);
             }else{
                 $this->helper->create_response(false,"Status not updated",[]);
+            }
+        }
+
+        private function _alreadyBooked($id){
+            $query = "SELECT * FROM cottages WHERE id='$id' AND available='0'";
+            $res = mysqli_query($this->conn,$query);
+            $res = mysqli_query($this->conn,$query);
+            if(mysqli_num_rows($res) > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        // book cottage for specific dates 
+        // checks first if it is already booked or not
+        function book_cottage($data){
+            $cottage_id = $data['cottage_id'];
+            $start_date = $data['start_date'];
+            $end_date = $data['end_date'];
+            if(!$this->_alreadyBooked($cottage_id)){
+                $updateQuery = "UPDATE cottages SET available='0',start_date='$start_date', end_date='$end_date' WHERE id='$cottage_id'";
+                $res = mysqli_query($this->conn,$updateQuery);
+                if(mysqli_affected_rows($this->conn) > 0){
+                    $this->helper->create_response(true,"Booked",[]);
+                }else{
+                    $this->helper->create_response(false,"Booking Fail",[]);
+                }
+            }else{
+                $this->helper->create_response(true,"Already Booked",[]);
             }
         }
     }
