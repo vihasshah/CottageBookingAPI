@@ -37,7 +37,7 @@
             $price = $data['price'];
             $images = $data['images'];
             if(!$this->_exists($data)){
-                $query = "INSERT INTO cottages VALUES(null,'$cottage_name','$place','$images','$available','$price','$amenities','$contact_no',5,0,'$category')";
+                $query = "INSERT INTO cottages VALUES(null,'$cottage_name','$place','$images','$available','$price','$amenities','$contact_no',5,0,'$category',null,null)";
                 $res = mysqli_query($this->conn,$query);
                 if($res > 0){
                     return array("success" => true,"message"=> "Cottage added");
