@@ -73,7 +73,7 @@
                 <a href="#!" class="brand-logo ">Cottage Booking</a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="index.php"><i class="material-icons left">store</i>Cottages</a></li>
-                    <!--<li><a href="users.html"><i class="material-icons left">person</i>Users</a></li>-->
+                    <li><a href="reports.php"><i class="material-icons left">insert_chart</i>Reports</a></li>
                 </ul>
             </div>
         </nav>
@@ -85,7 +85,7 @@
             <div id="cottageList" class="col s12"></div>
             <script>renderCottageList()</script>
         </div>
-       
+
     </div>
     <!-- floating btn -->
     <div class="fixed-action-btn">
