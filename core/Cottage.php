@@ -50,7 +50,7 @@
         }
 
         function get_list(){
-            $query = "SELECT cot.*,cat.category FROM cottages cot INNER JOIN categories cat ON cot.id = cat.id ORDER BY cot.id DESC";
+            $query = "SELECT cot.*,cat.category FROM cottages cot INNER JOIN categories cat ON cot.category_id = cat.id ORDER BY cot.id DESC";
             $res = mysqli_query($this->conn,$query);
             if(mysqli_num_rows($res) > 0){
                 $list = [];
